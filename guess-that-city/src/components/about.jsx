@@ -25,7 +25,7 @@ export default function About(){
                         Project by Matthew Farah :P
                     </p>
                     <div className="absolute -right-8 bottom-0 mb-3 ">
-                        <a className="bg-gray-100 rounded-t-2xl px-8 pb-4 pt-4 shadow-2xl " href="#front-page">
+                        <a className="bg-gray-100 rounded-t-2xl px-8 pb-4 pt-4 shadow-2xl " href="#Top">
                             <span className="text-black text-2xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.1)]">
                                 Return to top
                             </span>

@@ -1,10 +1,9 @@
 import Card from "@/components/card"
-import About from "@/components/about"
 
 export default function Home() {
   return (
     <div>
-      <main className="bg-gradient-to-b from-blue-200 to-green-400 h-screen pt-14 -z-10" id = "front-page">
+      <main className="bg-gradient-to-b from-blue-200 to-green-400 h-screen pt-14 -z-10">
       
         <h3 className="text-center text-3xl mt-10">
           Welcome to
@@ -30,13 +29,13 @@ export default function Home() {
             zIndex={"z-20"}/>
           </div>
         </div>
-        <div className="text-center mt-36 relative w-fit mx-auto  hover:-translate-y-4 transition-all duration-125">
-          <button className="bg-gray-100 rounded-2xl px-7 py-4 shadow-2xl relative z-50 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.3)]">
-            <span className="text-4xl font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.1)]">
+        <div className="text-center mt-36 relative w-fit mx-auto h-fit hover:-translate-y-4 transition-all duration-125">
+          <a className="bg-gray-100 rounded-2xl px-7 py-6 shadow-2xl relative z-50 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.3)]" href = {"/game/"}>
+            <span className="text-4xl font-bold pt-8 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.1)]">
               Click to play
             </span>
-          </button>
-          <a className = "absolute -rotate-[16deg] -right-48 -top-24 drop-shadow-[0_1.8px_1.2px_rgba(0,0,0,0.8)]" title="Videoplasty.com, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Paper_Plane_Vector.svg">
+          </a>
+          <a className = "absolute -rotate-[16deg] -right-48 -top-24 drop-shadow-[0_1.8px_1.2px_rgba(0,0,0,0.8)]" title="Videoplasty.com, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="#">
             <img width="256" alt="Paper Plane Vector" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Paper_Plane_Vector.svg/256px-Paper_Plane_Vector.svg.png"></img>
           </a>
         </div>

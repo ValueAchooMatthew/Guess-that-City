@@ -1,9 +1,18 @@
+'use client';
+
 import City from "@/components/city_image"
-import Guess from "@/components/user_guess"
+import { useState } from "react"
 
 // Add difficulty selector before this
 
 export default function Home(){
+
+
+    let [score, setScore] = useState(sessionStorage.getItem("score") ? Number(sessionStorage.getItem("score")):0)
+    sessionStorage.setItem("score", `${score}`)
+    let [highScore, setHighScore] = useState(localStorage.getItem("highScore") ? Number(localStorage.getItem("highScore")):0)
+    localStorage.setItem("highScore", `${highScore}`)
+
 
     return (
 
@@ -13,14 +22,19 @@ export default function Home(){
           Guess that City!
         </h1>
 
-            <div className="pt-24 w-full flex justify-center">
-                <City></City>
-                {/* <Guess></Guess> */}
+        <h2 className="flex justify-around pt-12 text-white text-4xl font-semibold">
+            <span className="">Score: {score}</span>
+            <span>High Score: {highScore}</span>
+        </h2>
+          
+            <div className="pt-24 w-fit h-fit text-center relative mx-auto">
+                <div className="">
+                    <City score = {score} setScore = {setScore} highScore = {highScore} setHighScore = {setHighScore}></City>
+                </div>
 
-            </div>
+             </div>
 
         </main>
         )
-
 
 }

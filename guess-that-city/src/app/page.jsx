@@ -30,7 +30,7 @@ export default function Home() {
           </div>
         </div>
         <div className="text-center mt-36 relative w-fit mx-auto h-fit hover:-translate-y-4 transition-all duration-125">
-          <a className="bg-gray-100 rounded-2xl px-7 py-6 shadow-2xl relative z-50 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.3)]" href = {"/game/"}>
+          <a className="bg-gray-100 rounded-2xl px-7 pt-6 pb-3 shadow-2xl relative z-50 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.3)]" href = {"/game/"}>
             <span className="text-4xl font-bold pt-8 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.1)]">
               Click to play
             </span>

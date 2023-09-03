@@ -6,7 +6,7 @@ export default function Navbar(){
 
         <div className="w-full h-fit bg-orange-400 absolute top-0 rounded-br-full flex justify-center py-2">
           <a className = "ml-24 mr-48 z-50" href="#About">
-            <span className="text-white font-semibold text-4xl">About</span>
+            <span className="text-white font-semibold text-4xl ">About</span>
           </a>
           <a className="ml-48 z-50" href="https://github.com/ValueAchooMatthew?tab=repositories" target="_">
             <span className="text-white font-semibold text-4xl">More projects</span>

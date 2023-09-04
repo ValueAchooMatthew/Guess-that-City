@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import Image from "next/image";
 
 
-export default function City({score, setScore, highScore, setHighScore}){
+export default function City({score, setScore, highScore, setHighScore, setStrikes}){
 
   useEffect(()=>{
     const fetch_data = async () =>{
@@ -26,9 +26,10 @@ export default function City({score, setScore, highScore, setHighScore}){
     .catch(()=>{console.log("An error has occured")})
   }, [])
 
+  let [text, setText] = useState("")
   let [imgSrc, setImgSrc] = useState(undefined)
   let [cityName, setCityName] = useState(undefined) 
-  let [text, setText] = useState("")
+  
 
   return(
     <div>
@@ -36,16 +37,18 @@ export default function City({score, setScore, highScore, setHighScore}){
         <div className="relative flex items-center justify-center overflow-hidden w-80 h-96 rounded-t-2xl mx-6 mt-4 ">
           {imgSrc ? <Image width={1000} height={1000} className = "w-72 h-96 object-cover overflow-hidden hover:scale-125 transition-all duration-150" src={imgSrc} alt=""></Image> : null}
         </div>
-        <div className='text-center py-4' id = "userGuess">
-          <span className="font-bold text-2xl">
+        <div className='text-center py-4 max-w-xs mx-auto max-h-fit overflow-hidden' id = "userGuess">
+          <span className="font-bold text-4xl max-w-xs max-h-fit">
             {text}
           </span>
         </div>  
       </div>
       
       <div>
-        <Guess city_name = {cityName} text={text} setText={setText} score = {score} setScore={setScore} highScore={highScore} setHighScore={setHighScore} ></Guess>
+        <Guess city_name = {cityName} text={text} setText={setText} score = {score} setScore={setScore} highScore={highScore} setHighScore={setHighScore} setStrikes = {setStrikes}></Guess>
       </div>
+
+
     </div>
   )
 

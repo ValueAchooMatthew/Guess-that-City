@@ -2,25 +2,26 @@
 
 import React, { useCallback, useState } from "react";
 
-export default function Guess({city_name, text, setText, score, setScore, highScore, setHighScore, setStrikes}){
+export default function GuessEX({city_name, text, setText, score, setScore, highScore, setHighScore, setStrikes}){
 
   let [tries, setTries] = useState(0)
-
+  
   let [answer, setAnswer] = useState(null)
 
   if(tries >= 3){
     
     if(score >= highScore){
       setHighScore(score)
-      localStorage.setItem("score", score)
+      localStorage.setItem("highScore", score)
     }
     setScore(0)
     setTries(0)
     setStrikes("Sorry, you ran out of tries")
-    setAnswer(city_name)
+    setAnswer(`The answer is ${city_name}`)
     sessionStorage.setItem("score", score)
 
     setInterval(()=>{
+      setAnswer("")
       setStrikes("")
       location.reload()
     }, 2000)
@@ -33,14 +34,16 @@ export default function Guess({city_name, text, setText, score, setScore, highSc
         event.preventDefault()
         const guess = document.getElementById("userGuess")
 
+
+
         if((city_name) && text.trim().toLowerCase() === city_name.toLowerCase()){
             setScore(score+1)
-            location.reload()
-            console.log("Correct!")
             if(score >= highScore){
-              setHighScore(score)
-              localStorage.setItem("score", score)
+              setHighScore(score+1)
+              localStorage.setItem("highScore", score)
             }
+            location.reload()
+            setAnswer("Correct Answer!")
 
         }else{
           guess.classList.add("animate-horizontalShaking")
@@ -56,7 +59,7 @@ export default function Guess({city_name, text, setText, score, setScore, highSc
     return(
     <>
       <div className="pt-3 pb-3">
-        <span className="text-center text-4xl font-semibold text-gray-800 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.3)] "> {answer ? `the answer is ${answer}`:null}</span>
+        <span className="text-center text-4xl font-semibold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.3)] "> {answer ? answer:null}</span>
       </div>
       <div className="h-fit py-3 px-3 w-96 mx-auto bg-white rounded-2xl shadow-2xl border-[3px] border-black">
         <form onSubmit={handleSubmit} className="font-semibold">

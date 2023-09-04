@@ -7,7 +7,6 @@ import { useState } from "react"
 
 export default function Home(){
 
-
     let [score, setScore] = useState(sessionStorage.getItem("score") ? Number(sessionStorage.getItem("score")):0)
     sessionStorage.setItem("score", `${score}`)
     let [highScore, setHighScore] = useState(localStorage.getItem("highScore") ? Number(localStorage.getItem("highScore")):0)
@@ -25,17 +24,19 @@ export default function Home(){
         </h1>
 
         <h2 className="flex justify-around pt-12 text-gray-100 text-4xl font-semibold" id = "information">
-            <span className="">Current streak: {score}</span>
-            <span>High Score: {highScore}</span>
+            <span className="">Current Streak: {score}</span>
+            <span>High-Score: {highScore}</span>
         </h2>
 
-        <div className="text-4xl font-semibold pt-12">
+        <div className="py-6">
+            <span className="text-center text-4xl font-semibold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.3)] ">
             {strikes}
+            </span>
         </div>
         
         <div className="w-fit h-fit text-center relative mx-auto">
             <div className="">
-                <City score = {score} setScore = {setScore} highScore = {highScore} setHighScore = {setHighScore} setStrikes = {setStrikes}></City>
+                <City score = {score} setScore = {setScore} highScore = {highScore} setHighScore = {setHighScore} setStrikes = {setStrikes} easy = {false}></City>
             </div>
         </div>
 

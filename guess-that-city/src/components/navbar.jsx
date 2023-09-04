@@ -1,8 +1,8 @@
 export default function Navbar(){
     return(
     <div>
-        <div className="bg-orange-500 w-48 h-48 rounded-full absolute -top-16 -left-16 z-20" id = "Top">
-        </div>
+        <a className="bg-orange-500 w-48 h-48 rounded-full absolute -top-16 -left-16 z-20 hover:scale-125 transition-all duration-150" href="/" id = "Top">
+        </a>
 
         <div className="w-full h-fit bg-orange-400 absolute top-0 rounded-br-full flex justify-center py-2">
           <a className = "ml-24 mr-48 z-50" href="#About">

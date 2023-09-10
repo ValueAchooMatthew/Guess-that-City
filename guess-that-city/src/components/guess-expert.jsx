@@ -20,7 +20,7 @@ export default function GuessEX({city_name, text, setText, score, setScore, high
     setAnswer(`The answer is ${city_name}`)
     sessionStorage.setItem("score", score)
 
-    setInterval(()=>{
+    setTimeout(()=>{
       setAnswer("")
       setStrikes("")
       location.reload()
@@ -34,16 +34,19 @@ export default function GuessEX({city_name, text, setText, score, setScore, high
         event.preventDefault()
         const guess = document.getElementById("userGuess")
 
-
-
         if((city_name) && text.trim().toLowerCase() === city_name.toLowerCase()){
             setScore(score+1)
             if(score >= highScore){
               setHighScore(score+1)
               localStorage.setItem("highScore", score)
             }
-            location.reload()
+            set
             setAnswer("Correct Answer!")
+            setTimeout(()=>{
+              location.reload()
+
+
+            }, 2000)
 
         }else{
           guess.classList.add("animate-horizontalShaking")

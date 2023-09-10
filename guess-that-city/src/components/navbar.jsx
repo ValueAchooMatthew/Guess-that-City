@@ -1,6 +1,6 @@
 export default function Navbar(){
     return(
-    <div>
+    <>
         <a className="bg-orange-500 w-48 h-48 rounded-full absolute -top-16 -left-16 z-20 hover:scale-125 transition-all duration-150" href="/" id = "Top">
         </a>
 
@@ -13,10 +13,10 @@ export default function Navbar(){
           </a>
         </div>
 
-        <div className="h-full w-6 absolute bg-orange-600 top-0 z-10">
+        <div className="h-full w-6 absolute bg-orange-600 top-8 z-10">
         </div>
-        <div className="h-full w-12 absolute bg-orange-400 top-4">
+        <div className="h-full w-12 absolute bg-orange-400 top-12">
         </div>
-    </div>
+    </>
     )
 }

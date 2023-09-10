@@ -37,9 +37,9 @@ export default function GuessEZ({city_name, text, setText, score, setScore, high
       <div className="pt-3 pb-3">
         <span className="text-center text-4xl font-semibold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.3)] "> {answer ? answer:null}</span>
       </div>
-      <div className="flex justify-around">
+      <div className="flex justify-center">
         <button onClick={handleClick} className="bg-gray-100 rounded-full shadow-2xl px-8 py-3 hover:-translate-y-2 transition-all duration-100">
-          <span className="text-3xl font-semibold">
+          <span className="text-3xl font-semibold ml-2">
             {options[0]}
           </span>
         </button>
@@ -56,7 +56,6 @@ export default function GuessEZ({city_name, text, setText, score, setScore, high
       </div>
 
     </>
-
 
     )
 }

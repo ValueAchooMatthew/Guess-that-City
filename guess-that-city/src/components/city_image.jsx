@@ -60,15 +60,15 @@ export default function City({score, setScore, highScore, setHighScore, setStrik
       fetch_data()
       .then((array)=>{
         setCityName(array[0])
-                      setImgSrc(array[1])
-                      setOptions(array[2])})
-                      .catch(()=>{console.log("An error has occured")})
+        setImgSrc(array[1])
+        setOptions(array[2])})
+        .catch(()=>{console.log("An error has occured")})
 
     }else{
       fetch_data()
       .then((array)=>{setCityName(array[0])
-                      setImgSrc(array[1])})
-                      .catch(()=>{console.log("An error has occured")})
+        setImgSrc(array[1])})
+        .catch(()=>{console.log("An error has occured")})
     }
 
   }, [])

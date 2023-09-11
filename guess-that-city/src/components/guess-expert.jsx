@@ -4,6 +4,7 @@ import React, { useCallback, useState } from "react";
 
 export default function GuessEX({city_name, text, setText, score, setScore, highScore, setHighScore, setStrikes}){
 
+
   let [tries, setTries] = useState(0)
   
   let [answer, setAnswer] = useState(null)
@@ -40,13 +41,10 @@ export default function GuessEX({city_name, text, setText, score, setScore, high
               setHighScore(score+1)
               localStorage.setItem("highScore", score)
             }
-            set
-            setAnswer("Correct Answer!")
             setTimeout(()=>{
               location.reload()
-
-
             }, 2000)
+            setAnswer("Correct Answer!")
 
         }else{
           guess.classList.add("animate-horizontalShaking")

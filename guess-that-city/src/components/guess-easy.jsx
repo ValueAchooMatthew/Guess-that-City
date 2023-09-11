@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 export default function GuessEZ({city_name, text, setText, score, setScore, highScore, setHighScore, options}){
 
@@ -10,6 +10,7 @@ export default function GuessEZ({city_name, text, setText, score, setScore, high
 
       if(event.target.innerText.toLowerCase() === city_name.toLowerCase()){
         setScore(score+1)
+        sessionStorage.setItem("score", score)
         if(score >= highScore){
           setHighScore(score+1)
           localStorage.setItem("highScore", score)

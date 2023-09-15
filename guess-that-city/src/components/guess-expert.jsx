@@ -9,6 +9,9 @@ export default function GuessEX({city_name, text, setText, score, setScore, high
   
   let [answer, setAnswer] = useState(null)
 
+  const guess = document.getElementById("userGuess")
+
+
   if(tries >= 3){
     
     if(score >= highScore){
@@ -20,12 +23,12 @@ export default function GuessEX({city_name, text, setText, score, setScore, high
     setStrikes("Sorry, you ran out of tries")
     setAnswer(`The answer is ${city_name}`)
     sessionStorage.setItem("score", score)
+    guess.textContent = ""
 
     setTimeout(()=>{
       setAnswer("")
       setStrikes("")
-      location.reload()
-    }, 2000)
+    }, 1000)
 
   }
 
@@ -33,7 +36,6 @@ export default function GuessEX({city_name, text, setText, score, setScore, high
         
         // Use UseState
         event.preventDefault()
-        const guess = document.getElementById("userGuess")
 
         if((city_name) && text.trim().toLowerCase() === city_name.toLowerCase()){
             setScore(score+1)
@@ -41,16 +43,16 @@ export default function GuessEX({city_name, text, setText, score, setScore, high
               setHighScore(score+1)
               localStorage.setItem("highScore", score)
             }
-            setTimeout(()=>{
-              location.reload()
-            }, 2000)
             setAnswer("Correct Answer!")
+
+            setTimeout(()=>{
+              setAnswer("")
+            }, 1000)
 
         }else{
           guess.classList.add("animate-horizontalShaking")
           setTimeout(()=>{
             guess.classList.remove("animate-horizontalShaking")
-
           }, 1000)
           setTries(tries+1)
 

@@ -2,7 +2,7 @@
 
 import React, { useCallback, useState } from "react";
 
-export default function GuessEZ({city_name, text, setText, score, setScore, highScore, setHighScore, options}){
+export default function GuessEZ({city_name, score, setScore, highScore, setHighScore, options}){
 
   let [answer, setAnswer] = useState(null)
 
@@ -16,19 +16,19 @@ export default function GuessEZ({city_name, text, setText, score, setScore, high
           localStorage.setItem("highScore", score)
         }
         setAnswer("Correct Answer!")
-        setInterval(()=>{
+        setTimeout(()=>{
           setAnswer("")
-          location.reload()
-        }, 2000)
+
+        }, 1000)
     
       }else{
         setAnswer(`Sorry, the answer was ${city_name}`)
-        setInterval(()=>{
-          setScore(0)
+        sessionStorage.setItem("score", 0)
+        setScore(0)
+        setTimeout(()=>{
           setAnswer("")
-          location.reload()
-        }, 2000)
 
+        }, 1000)
       }
 
     }

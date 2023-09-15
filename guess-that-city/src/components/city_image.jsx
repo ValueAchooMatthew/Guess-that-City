@@ -9,7 +9,7 @@ import Image from "next/image";
 export default function City({score, setScore, highScore, setHighScore, setStrikes, easy}){
 
   function shuffle(array) {
-    let currentIndex = array.length,  randomIndex;
+    let currentIndex = array.length, randomIndex;
   
     // While there remain elements to shuffle.
     while (currentIndex > 0) {
@@ -25,13 +25,14 @@ export default function City({score, setScore, highScore, setHighScore, setStrik
   
     return array;
   }
+
   
   useEffect(()=>{
     const fetch_data = async () =>{
     let cities = await fetch("https://api.teleport.org/api/urban_areas/")
     cities = await cities.json()
     let city = cities._links["ua:item"][Math.floor(Math.random() * cities.count)]
-
+        
     if(easy){
       const cityName = city.name
       let options = [cities._links["ua:item"][Math.floor(Math.random() * cities.count)].name, cities._links["ua:item"][Math.floor(Math.random() * cities.count)].name, cityName]
@@ -51,8 +52,6 @@ export default function City({score, setScore, highScore, setHighScore, setStrik
       city = await city.json()
       const imgSrc = city.photos[0].image.mobile
       return [cityName, imgSrc]
-
-
     }
     
     }
@@ -71,7 +70,7 @@ export default function City({score, setScore, highScore, setHighScore, setStrik
         .catch(()=>{console.log("An error has occured")})
     }
 
-  }, [])
+  }, [score])
 
   let [text, setText] = useState("")
   let [options, setOptions] = useState([])

@@ -1,18 +1,39 @@
 'use client';
 
 import City from "@/components/city_image"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 // Add difficulty selector before this
 
 export default function Home(){
 
-    let [score, setScore] = useState(sessionStorage.getItem("score") ? Number(sessionStorage.getItem("score")):0)
+    // let [score, setScore] = useState(sessionStorage.getItem("score") ? Number(sessionStorage.getItem("score")):0)
 
-    let [highScore, setHighScore] = useState(localStorage.getItem("highScore") ? Number(localStorage.getItem("highScore")):0)
+    // let [highScore, setHighScore] = useState(localStorage.getItem("highScore") ? Number(localStorage.getItem("highScore")):0)
 
-    sessionStorage.setItem("score", `${score}`)
-    localStorage.setItem("highScore", `${highScore}`)
+    // if(typeof window !== "undefined"){
+    //     sessionStorage.setItem("score", `${score}`)
+    //     localStorage.setItem("highScore", `${highScore}`)
+
+    // }
+
+    let [score, setScore] = useState(0)
+    let [highScore, setHighScore] = useState(0)
+
+
+    useEffect(
+        ()=>{
+            if(sessionStorage.getItem("score") && sessionStorage.getItem("score") > score){
+                setScore(Number(sessionStorage.getItem("score")))
+            }
+            if(localStorage.getItem("highScore") && localStorage.getItem("highScore") > highScore){
+                setHighScore(Number(localStorage.getItem("highScore")))
+
+            }
+
+        }
+
+    , [score])
 
 
     return (

@@ -7,16 +7,6 @@ import { useEffect, useState } from "react"
 
 export default function Home(){
 
-    // let [score, setScore] = useState(sessionStorage.getItem("score") ? Number(sessionStorage.getItem("score")):0)
-
-    // let [highScore, setHighScore] = useState(localStorage.getItem("highScore") ? Number(localStorage.getItem("highScore")):0)
-
-    // if(typeof window !== "undefined"){
-    //     sessionStorage.setItem("score", `${score}`)
-    //     localStorage.setItem("highScore", `${highScore}`)
-
-    // }
-
     let [score, setScore] = useState(0)
     let [highScore, setHighScore] = useState(0)
 

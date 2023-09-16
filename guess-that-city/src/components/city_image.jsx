@@ -3,8 +3,10 @@
 import GuessEX from "./guess-expert"
 import GuessEZ from "./guess-easy";
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import Image from "next/image";
+import Loading from "./loading";
+
 
 export default function City({score, setScore, highScore, setHighScore, setStrikes, easy}){
 
@@ -81,7 +83,10 @@ export default function City({score, setScore, highScore, setHighScore, setStrik
     <div className="mt-12">
       <div className="min-h-fit max-w-fit bg-white rounded-t-2xl pt-4 rounded-b-md mx-auto shadow-2xl">
         <div className="relative flex items-center justify-center overflow-hidden w-80 h-96 rounded-t-2xl mx-6 mt-4 ">
-          {imgSrc ? <Image width={1000} height={1000} className = "w-72 h-96 object-cover overflow-hidden hover:scale-125 transition-all duration-150" src={imgSrc} alt=""></Image> : null}
+          <Suspense fallback = {<Loading />}>
+            {imgSrc ? <Image width={1000} height={1000} className = "w-72 h-96 object-cover overflow-hidden hover:scale-125 transition-all duration-150" src={imgSrc} alt=""></Image> : null}
+          </Suspense>
+
         </div>
         <div className='text-center py-4 max-w-xs mx-auto max-h-fit overflow-hidden' id = "userGuess">
 

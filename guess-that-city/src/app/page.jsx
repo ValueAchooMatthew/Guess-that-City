@@ -2,8 +2,7 @@ import Card from "@/components/card"
 
 export default function Home() {
   return (
-    <div>
-      <main className="bg-gradient-to-b from-blue-200 to-green-400 h-screen pt-14 -z-10">
+      <main className="bg-gradient-to-b from-blue-200 to-green-400 pt-14 -z-10 h-fit pb-48">
       
         <h3 className="text-center text-3xl mt-10">
           Welcome to
@@ -41,8 +40,6 @@ export default function Home() {
         </div>
       
       </main>
-    </div>
- 
 
   )
 }

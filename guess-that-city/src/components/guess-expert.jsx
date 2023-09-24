@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 export default function GuessEX({city_name, text, setText, score, setScore, highScore, setHighScore, setStrikes}){
 
@@ -9,55 +9,60 @@ export default function GuessEX({city_name, text, setText, score, setScore, high
   
   let [answer, setAnswer] = useState(null)
 
-  const guess = document.getElementById("userGuess")
-
-
-  if(tries >= 3){
+  useEffect( 
+    ()=>{
+      if(tries >= 3){
     
-    if(score >= highScore){
-      setHighScore(score)
-      localStorage.setItem("highScore", score)
-    }
-    setScore(0)
-    setTries(0)
-    setStrikes("Sorry, you ran out of tries")
-    setAnswer(`The answer is ${city_name}`)
-    sessionStorage.setItem("score", score)
-    guess.textContent = ""
-
+        if(score >= highScore){
+          setHighScore(score)
+          localStorage.setItem("highScore", score)
+        }
+        setScore(0)
+        setTries(0)
+        setStrikes("Sorry, you ran out of tries")
+        setAnswer(`The answer is ${city_name}`)
+        sessionStorage.setItem("score", 0)
+    
+        setTimeout(()=>{
+          setAnswer("")
+          setStrikes("")
+        }, 1000)}
+    
+    const guess = document.getElementById("userGuess")
+    guess.classList.add("animate-horizontalShaking")
     setTimeout(()=>{
-      setAnswer("")
-      setStrikes("")
+      guess.classList.remove("animate-horizontalShaking")
     }, 1000)
 
-  }
+    
+    }, [tries])
+  
+  useEffect(
+  ()=>{
+    const guess = document.getElementById("userGuess")
+    guess.textContent = ""
+  }, [score])
 
-    const handleSubmit = useCallback(function(event){
-        
-        // Use UseState
-        event.preventDefault()
-
-        if((city_name) && text.trim().toLowerCase() === city_name.toLowerCase()){
-            setScore(score+1)
-            if(score >= highScore){
-              setHighScore(score+1)
-              localStorage.setItem("highScore", score)
-            }
-            setAnswer("Correct Answer!")
-
-            setTimeout(()=>{
-              setAnswer("")
-            }, 1000)
-
-        }else{
-          guess.classList.add("animate-horizontalShaking")
+  const handleSubmit = useCallback(function(event){
+      
+      // Use UseState
+      event.preventDefault()
+      if((city_name) && text.trim().toLowerCase() === city_name.toLowerCase()){
+          setTries(0)
+          setScore(score+1)
+          if(score >= highScore){
+            setHighScore(score+1)
+            localStorage.setItem("highScore", score)
+          }
+          setAnswer("Correct Answer!")
           setTimeout(()=>{
-            guess.classList.remove("animate-horizontalShaking")
+            setAnswer("")
           }, 1000)
-          setTries(tries+1)
-
-        }
-      }, [city_name, text]) 
+      }else{
+        setTries(tries+1)
+        console.log(tries)
+      }
+    }, [city_name, text]) 
 
     return(
     <>

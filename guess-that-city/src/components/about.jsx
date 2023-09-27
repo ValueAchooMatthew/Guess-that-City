@@ -4,7 +4,7 @@ export default function About(){
         <div className=" bg-gradient-to-b from-green-400 to-green-300 w-full h-fit relative z-50 " id = "About">
             <div className="border-dashed max-w-6xl h-0 border-[1px] border-black mx-auto -z-50"></div>
 
-            <div className="bg-orange-400 h-full w-12 absolute rounded-br-full -top-4">
+            <div className=" bg-orange-400 h-full w-12 absolute rounded-br-full -top-12">
                 <div className="bg-orange-600 h-full w-6 rounded-br-full absolute -top-4">
 
                 </div>

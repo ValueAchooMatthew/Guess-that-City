@@ -6,8 +6,8 @@ export default function GuessEX({city_name, text, setText, score, setScore, high
 
 
   let [tries, setTries] = useState(0)
-  
   let [answer, setAnswer] = useState(null)
+  console.log(city_name)
 
   useEffect( 
     ()=>{
@@ -22,6 +22,7 @@ export default function GuessEX({city_name, text, setText, score, setScore, high
         setStrikes("Sorry, you ran out of tries")
         setAnswer(`The answer is ${city_name}`)
         sessionStorage.setItem("score", 0)
+        setText("")
     
         setTimeout(()=>{
           setAnswer("")
@@ -40,7 +41,6 @@ export default function GuessEX({city_name, text, setText, score, setScore, high
   useEffect(
   ()=>{
     const guess = document.getElementById("userGuess")
-    guess.textContent = ""
   }, [score])
 
   const handleSubmit = useCallback(function(event){
@@ -48,6 +48,7 @@ export default function GuessEX({city_name, text, setText, score, setScore, high
       // Use UseState
       event.preventDefault()
       if((city_name) && text.trim().toLowerCase() === city_name.toLowerCase()){
+          setText("")
           setTries(0)
           setScore(score+1)
           if(score >= highScore){
@@ -60,7 +61,6 @@ export default function GuessEX({city_name, text, setText, score, setScore, high
           }, 1000)
       }else{
         setTries(tries+1)
-        console.log(tries)
       }
     }, [city_name, text]) 
 

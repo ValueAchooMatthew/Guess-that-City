@@ -83,16 +83,15 @@ export default function City({score, setScore, highScore, setHighScore, setStrik
     <div className="mt-12">
       <div className="min-h-fit max-w-fit bg-white rounded-t-2xl pt-4 rounded-b-md mx-auto shadow-2xl">
         <div className="relative flex items-center justify-center overflow-hidden w-80 h-96 rounded-t-2xl mx-6 mt-4 ">
-          <Suspense fallback = {<Loading />}>
+          <Suspense fallback = {React.lazy}>
             {imgSrc ? <Image width={1000} height={1000} className = "w-72 h-96 object-cover overflow-hidden hover:scale-125 transition-all duration-150" src={imgSrc} alt=""></Image> : null}
           </Suspense>
 
         </div>
         <div className='text-center py-4 max-w-xs mx-auto max-h-fit overflow-hidden' id = "userGuess">
-
-          {easy ? null:<span className="font-bold text-4xl max-w-xs max-h-fit">
+          <span className="text-3xl font-semibold">
             {text}
-          </span>}
+          </span>
 
         </div>  
       </div>

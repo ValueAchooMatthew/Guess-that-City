@@ -151,10 +151,10 @@ export default function Home({params}: {params: {difficulty: "casual" | "expert"
                 Guess that City!
             </h1>
             <div className="flex justify-around text-4xl my-4 font-semibold">
-                <div className=" bg-white bg-opacity-90 rounded-3xl py-2 px-4">
+                <div className=" bg-white bg-opacity-90 rounded-3xl py-3 px-5">
                     Score: {data.casual? scoreCasual:scoreExpert}
                 </div>
-                <div className="bg-white bg-opacity-90 rounded-3xl py-2 px-4">
+                <div className="bg-white bg-opacity-90 rounded-3xl py-3 px-5">
                     Highscore: {data.casual? highScoreCasual:highScoreExpert}
                 </div>
             </div>

@@ -4,6 +4,7 @@
 
 ## Skills Used ##
 * NextJS utilities and project structuring
+* Typescript 
 * React and React Hooks
 * Tailwind
 * HTML and custom CSS animations 

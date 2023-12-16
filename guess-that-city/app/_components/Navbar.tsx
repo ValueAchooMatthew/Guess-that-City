@@ -12,11 +12,6 @@ export default function Navbar(){
             <span className="text-white font-semibold text-4xl">More projects</span>
           </a>
         </div>
-
-        {/* <div className="h-full w-6 absolute bg-orange-600 top-12 z-10">
-        </div>
-        <div className="h-full w-12 absolute bg-orange-400 top-16">
-        </div> */}
     </div>
     )
 }

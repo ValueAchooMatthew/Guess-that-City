@@ -1,11 +1,15 @@
 /** @type {import('next').NextConfig} */
-
-// Need to specify domain of where images come from to use built in Image element from Nextjs
-
 const nextConfig = {
-    images: {
-        domains: ["d13k13wj6adfdf.cloudfront.net"],
-      },
+    images : {
+        // Adding so Nextjs Image component can be used to communciate with hostname to optimize image
+        remotePatterns: [
+            {hostname:"etimg.etb2bimg.com"}, 
+            {hostname:"media.cnn.com"}, 
+            {hostname:"img.monocle.com"}, 
+            {hostname:"upload.wikimedia.org"},
+            {hostname: "d13k13wj6adfdf.cloudfront.net"}
+        ],
+    }
 
 }
 

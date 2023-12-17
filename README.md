@@ -8,6 +8,7 @@
 * React and React Hooks
 * Tailwind
 * HTML and custom CSS animations 
+* Optimizing webpage across computer and mobile devices
 * Deploying NextJS projects using Vercel
 
 ## About ##

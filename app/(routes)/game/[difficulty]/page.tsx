@@ -1,9 +1,8 @@
 "use client";
 
 import { SyntheticEvent, useEffect, useState } from "react";
-import Image from "next/image";
 
-import CityType, { ButtonText, CasualCity, ExpertCity } from "@/app/_types/Types";
+import { CasualCity, ExpertCity } from "@/app/_types/Types";
 import FetchImages from "../../../_components/fetch_images/FetchImages";
 import Card from "@/app/_components/Card";
 import RandomNumbers from "@/app/_components/fetch_images/helper_functions/RandomNumberGenerator";
@@ -56,7 +55,6 @@ export default function Home({params}: {params: {difficulty: "casual" | "expert"
         }
 
     }, []);    
-
     if(data){
     // Creating random numbers to select possible options
     const handleClick = (event: SyntheticEvent)=>{
@@ -94,7 +92,6 @@ export default function Home({params}: {params: {difficulty: "casual" | "expert"
         if(event.target instanceof HTMLInputElement){
             setDisplayText(event.target.value);
         }
-
     }
     const handleSubmit = (event: SyntheticEvent) =>{
         event.preventDefault();
@@ -141,16 +138,14 @@ export default function Home({params}: {params: {difficulty: "casual" | "expert"
                     setResponse("");
                 }, 1200);
             }
-
         }
     }
-
     return(
-        <div className="p-12 bg-gradient-to-b from-blue-300 to-green-400 text-center h-screen ">
-            <h1 className="text-center text-6xl mt-12 font-semibold text-gray-800 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.3)]">
+        <div className="lg:py-12 lg:pl-12 py-8 pl-8 bg-gradient-to-b from-blue-300 to-green-400 text-center h-fit">
+            <h1 className="text-center md:text-6xl text-4xl mt-12 font-semibold text-gray-800 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.3)]">
                 Guess that City!
             </h1>
-            <div className="flex justify-around text-4xl my-4 font-semibold">
+            <div className="flex justify-around md:text-4xl text-xl my-4 font-semibold">
                 <div className=" bg-white bg-opacity-90 rounded-3xl py-3 px-5">
                     Score: {data.casual? scoreCasual:scoreExpert}
                 </div>
@@ -158,33 +153,31 @@ export default function Home({params}: {params: {difficulty: "casual" | "expert"
                     Highscore: {data.casual? highScoreCasual:highScoreExpert}
                 </div>
             </div>
-
-            <div className="">
+            <div className="flex flex-col">
                 <Card display_text={displayText} url_destination={data.city.href} zIndex="50" game = {true}></Card>
                 {data.casual?
-                <div className="grid grid-cols-5 grid-rows-1 text-center text-4xl mt-6 gap-8">
-                    <button onClick={handleClick} className="text-3xl font-semibold row-start-1 col-start-2 justify-self-end
-                       bg-gray-100 w-fit rounded-3xl shadow-2xl px-8 py-3 hover:-translate-y-2 transition-all duration-100">
+                <div className="grid grid-cols-5 md:grid-rows-1 grid-rows-3 text-center md:text-4xl text-2xl mt-6 lg:gap-8 gap-4">
+                    <button onClick={handleClick} className="font-semibold lg:row-start-1 row-start-2 lg:col-start-2 col-start-3 lg:justify-self-end justify-self-center
+                       bg-gray-100 w-fit rounded-3xl shadow-2xl md:px-8 px-4 md:py-4 py-2 hover:-translate-y-2 transition-all duration-100">
                         {data.options[random_nums[0]]}
                     </button>
-                    <button onClick={handleClick} className="text-3xl font-semibold row-start-1 col-start-3 justify-self-center
-                       bg-gray-100 w-fit rounded-3xl shadow-2xl px-8 py-4 hover:-translate-y-2 transition-all duration-100 ">
+                    <button onClick={handleClick} className="font-semibold row-start-1 col-start-3 justify-self-center
+                       bg-gray-100 w-fit rounded-3xl shadow-2xl md:px-8 px-4 md:py-4 py-2 hover:-translate-y-2 transition-all duration-100 ">
                         {data.options[random_nums[1]]}
                     </button>
-                    <button onClick={handleClick} className="text-3xl font-semibold row-start-1 col-start-4 justify-self-start
-                       bg-gray-100 w-fit rounded-3xl shadow-2xl px-8 py-4 hover:-translate-y-2 transition-all duration-100">
+                    <button onClick={handleClick} className="font-semibold lg:row-start-1 row-start-3 lg:col-start-4 col-start-3 lg:justify-self-start justify-self-center
+                       bg-gray-100 w-fit rounded-3xl shadow-2xl md:px-8 px-4 md:py-4 py-2 hover:-translate-y-2 transition-all duration-100">
                         {data.options[random_nums[2]]}
                     </button>
                 </div>
                 :
-                <div className="text-center text-3xl mt-8">
+                <div className="text-center md:text-3xl text-xl mt-8">
                     <form  onSubmit={handleSubmit}>
-                        <input className="rounded-xl w-[35rem] h-12 border-2 border-black p-8" onChange={handleChange}
+                        <input className="rounded-xl md:w-[35rem] w-[17rem] md:h-12 h-6 border-2 border-black p-8" onChange={handleChange}
                         autoFocus={true}
                         placeholder={"Type here..."}
                         type="text"/>
                     </form>
-
                 </div>
                 }
                 <div className="text-center text-5xl text-white font-semibold mt-4">
@@ -193,18 +186,16 @@ export default function Home({params}: {params: {difficulty: "casual" | "expert"
             </div>
         </div>
     )
-    
     }else{
         return(
             <div className="p-12 h-screen bg-gradient-to-b from-blue-300 to-green-400 flex flex-col align-middle">
-                <h1 className="mt-16 text-6xl font-semibold text-gray-800 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.3)] text-center">
+                <h1 className="mt-16 text-6xl md:text-4xl font-semibold text-gray-800 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.3)] text-center">
                   Guess that City!
                 </h1>
-                <span className="text-6xl text-white mt-40 font-bold text-center">
+                <span className="text-6xl md:text-4xl text-white mt-40 font-bold text-center">
                     Loading...
                 </span>
             </div>
         )
     }
-
 }

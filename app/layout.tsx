@@ -23,8 +23,8 @@ export default function RootLayout({
         <title>Guess That City!</title>
       </head>
       <body className={inter.className +" h-fit relative"}>
-        <div className="z-10 absolute bg-orange-400 h-full w-12 rounded-br-full -top-12">
-            <div className=" bg-orange-600 h-full w-6 rounded-br-full absolute -top-4">
+        <div className="z-10 absolute bg-orange-400 h-full md:w-12 w-8 rounded-br-full -top-12">
+            <div className=" bg-orange-600 h-full md:w-6 w-4 rounded-br-full absolute -top-4">
             </div>
         </div>
         <Navbar />

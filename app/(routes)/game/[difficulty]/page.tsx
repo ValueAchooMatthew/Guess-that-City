@@ -5,14 +5,10 @@ import { SyntheticEvent, useEffect, useState } from "react";
 import { CasualCity, ExpertCity } from "@/app/_types/Types";
 import FetchImages from "../../../_components/fetch_images/FetchImages";
 import Card from "@/app/_components/Card";
-import RandomNumbers from "@/app/_components/fetch_images/helper_functions/RandomNumberGenerator";
-
-
-// Have to generate random numbers outside of component because otherwise if a use state is called, the component is rerendered and random numbers 
-// will regenerate and therefore shift the position of the options
-const random_nums = RandomNumbers(3);
 
 export default function Home({params}: {params: {difficulty: "casual" | "expert"}}){
+
+
 
     const difficulty = params.difficulty;
     const [data, setData] = useState<CasualCity | ExpertCity | undefined>();
@@ -56,7 +52,6 @@ export default function Home({params}: {params: {difficulty: "casual" | "expert"
 
     }, []);    
     if(data){
-    // Creating random numbers to select possible options
     const handleClick = (event: SyntheticEvent)=>{
         // Don't do anything if data is already being fetched
         if(event.target instanceof HTMLButtonElement && !updating){
@@ -159,15 +154,15 @@ export default function Home({params}: {params: {difficulty: "casual" | "expert"
                 <div className="grid grid-cols-5 md:grid-rows-1 grid-rows-3 text-center md:text-4xl text-2xl mt-6 lg:gap-8 gap-4">
                     <button onClick={handleClick} className="font-semibold lg:row-start-1 row-start-2 lg:col-start-2 col-start-3 lg:justify-self-end justify-self-center
                        bg-gray-100 w-fit rounded-3xl shadow-2xl md:px-8 px-4 md:py-4 py-2 hover:-translate-y-2 transition-all duration-100">
-                        {data.options[random_nums[0]]}
+                        {data.options[0]}
                     </button>
                     <button onClick={handleClick} className="font-semibold row-start-1 col-start-3 justify-self-center
                        bg-gray-100 w-fit rounded-3xl shadow-2xl md:px-8 px-4 md:py-4 py-2 hover:-translate-y-2 transition-all duration-100 ">
-                        {data.options[random_nums[1]]}
+                        {data.options[1]}
                     </button>
                     <button onClick={handleClick} className="font-semibold lg:row-start-1 row-start-3 lg:col-start-4 col-start-3 lg:justify-self-start justify-self-center
                        bg-gray-100 w-fit rounded-3xl shadow-2xl md:px-8 px-4 md:py-4 py-2 hover:-translate-y-2 transition-all duration-100">
-                        {data.options[random_nums[2]]}
+                        {data.options[2]}
                     </button>
                 </div>
                 :

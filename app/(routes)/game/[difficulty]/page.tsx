@@ -1,16 +1,17 @@
 "use client";
 
-import { SyntheticEvent, useEffect, useState } from "react";
+import { SyntheticEvent, use, useEffect, useState } from "react";
 
 import { CasualCity, ExpertCity } from "@/app/_types/Types";
 import FetchImages from "../../../_components/fetch_images/FetchImages";
 import Card from "@/app/_components/Card";
 
-export default function Home({params}: {params: {difficulty: "casual" | "expert"}}){
+// Since Next.js 15, route params arrive as a Promise; use() unwraps it in a client component
+export default function Home({params}: {params: Promise<{difficulty: "casual" | "expert"}>}){
 
 
 
-    const difficulty = params.difficulty;
+    const { difficulty } = use(params);
     const [data, setData] = useState<CasualCity | ExpertCity | undefined>();
     const [displayText, setDisplayText] = useState<string>("")
     const [scoreCasual, setScoreCasual] = useState<number>(0);

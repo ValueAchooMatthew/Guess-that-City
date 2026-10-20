@@ -6,8 +6,7 @@ const nextConfig = {
             {hostname:"etimg.etb2bimg.com"}, 
             {hostname:"media.cnn.com"}, 
             {hostname:"img.monocle.com"}, 
-            {hostname:"upload.wikimedia.org"},
-            {hostname: "d13k13wj6adfdf.cloudfront.net"}
+            {hostname:"upload.wikimedia.org"}
         ],
     }
 

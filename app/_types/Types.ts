@@ -1,27 +1,26 @@
-export default interface CityType{
+// One entry in app/_data/cities.json (built by scripts/build-cities.mjs)
+export default interface City{
+    name: string,
+    // Wikimedia Commons thumbnail
+    image: string,
+    // Commons file page, which carries the full license and author details
+    source: string,
+    artist: string,
+    license: string
+}
 
-    _links: {
-        curies: Array<{
-            href:string,
-            name:string,
-            templated:boolean;
-        }>,
-        self:{
-            href:string;
-        },
-        "ua:item": Array<{
-            href:string,
-            name:string;
-        }>;
-    };
-    count: number;
+export interface PhotoCredit{
+    artist: string,
+    license: string,
+    source: string
 }
 
 export interface CasualCity{
     casual: true,
     city:{
         name: string,
-        href: string
+        href: string,
+        credit: PhotoCredit
     },
     incorrect_cities:{
         city_1:{
@@ -38,44 +37,7 @@ export interface ExpertCity{
     casual:false,
     city:{
         name:string,
-        href:string
+        href:string,
+        credit: PhotoCredit
     }
 }
-
-export interface CityInformation{
-
-    _links:{
-        "ua:images":{
-            href:string;
-        },
-    },
-    // Using indexer because only relevant property on this type is images to retrieve image info
-}
-
-export interface ImageInformation{
-    photos:Array<{
-        attribution:{
-            license: string,
-            photographer:string,
-            site:string,
-            source:string
-        },
-        image:{
-            mobile:string,
-            web:string
-        }
-    }>,
-
-}
-
-export interface ButtonText{
-
-    outerText: string;
-
-}
-
-
-
-
-
-

@@ -1,44 +1,41 @@
-import CityType, { CasualCity, ExpertCity, CityInformation, ImageInformation } from "@/app/_types/Types";
+import City, { CasualCity, ExpertCity } from "@/app/_types/Types";
+import cities from "@/app/_data/cities.json";
 import RandomNumbers from "./helper_functions/RandomNumberGenerator";
 
+// Cities and photos used to come from the Teleport API, which has shut down. They now come from
+// app/_data/cities.json (Wikimedia Commons photos, rebuilt with scripts/build-cities.mjs), so the
+// game no longer depends on an outside API. Still async so the game page can keep awaiting it.
 export default async function FetchImages(difficulty: "casual" | "expert") {
-    
-    let data = await fetch("https://api.teleport.org/api/urban_areas/");
 
-    // Response object returns list of cities and API endpoints for specific city information
-    const responseObj: CityType = await data.json();
+    const city_list: City[] = cities;
 
-    // Checking if response object after parsing into Json is of the desired structure, if so continue, if not
-    // return as undefined and handle laterresponseObj
-    // Create three random, unique numbers to retrieve different city names
-    const random_city_nums: [number, number, number] = RandomNumbers(responseObj.count);
+    // Create three random, unique numbers to pick the correct city and two incorrect ones
+    const random_city_nums: [number, number, number] = RandomNumbers(city_list.length);
+    const correct_city: City = city_list[random_city_nums[0]];
 
-    // Requesting specific city information using responseObj
-    data = await fetch(responseObj._links["ua:item"][random_city_nums[0]].href)
-    const city: CityInformation = await data.json();
-    data = await fetch(city._links["ua:images"].href);
-
-    // Get image
-    const image: ImageInformation = await data.json();
+    const city = {
+        name: correct_city.name,
+        href: correct_city.image,
+        credit: {
+            artist: correct_city.artist,
+            license: correct_city.license,
+            source: correct_city.source
+        }
+    };
 
     if(difficulty === "casual"){
-        // Ugly indexing ¯\_(ツ)_/¯
-        const correct_city: string = responseObj._links["ua:item"][random_city_nums[0]].name;
-        const first_incorrect_city: string = responseObj._links["ua:item"][random_city_nums[1]].name;
-        const second_incorrect_city: string = responseObj._links["ua:item"][random_city_nums[2]].name;
+        const first_incorrect_city: string = city_list[random_city_nums[1]].name;
+        const second_incorrect_city: string = city_list[random_city_nums[2]].name;
 
         // Doing this to randomize the order which the options appear in
         const city_array: [string, string, string] = [
-            correct_city, first_incorrect_city, second_incorrect_city
+            correct_city.name, first_incorrect_city, second_incorrect_city
         ];
-        const random_option_nums: [number, number, number] = RandomNumbers(3); 
+        const random_option_nums: [number, number, number] = RandomNumbers(3);
 
-        const cities: CasualCity = {
+        const casual_city: CasualCity = {
             casual:true,
-            city:{
-                name: correct_city,
-                href: image.photos[0].image.mobile
-            },
+            city,
             incorrect_cities:{
                 city_1:{
                     name:first_incorrect_city,
@@ -49,16 +46,13 @@ export default async function FetchImages(difficulty: "casual" | "expert") {
             },
             options: [city_array[random_option_nums[0]], city_array[random_option_nums[1]], city_array[random_option_nums[2]]]
         }
-        return cities
-        
+        return casual_city
+
     }else{
-        const city: ExpertCity = {
+        const expert_city: ExpertCity = {
             casual:false,
-            city:{
-                name:responseObj._links["ua:item"][random_city_nums[0]].name,
-                href:image.photos[0].image.mobile
-            }
+            city
         }
-        return city
+        return expert_city
     }
 }

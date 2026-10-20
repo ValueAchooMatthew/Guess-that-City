@@ -44,7 +44,7 @@ export default function Home() {
       </Link>
 
       <a className = "absolute -rotate-[16deg] -right-48 -top-24 drop-shadow-[0_1.8px_1.2px_rgba(0,0,0,0.8)] md:inline-block hidden" title="Videoplasty.com, CC BY-SA 4.0 &lt;https://creativecommons.org/licenses/by-sa/4.0&gt;, via Wikimedia Commons" href="/choose_difficulty">
-        <Image width={256} height={256} alt="Paper Plane Vector" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Paper_Plane_Vector.svg/256px-Paper_Plane_Vector.svg.png" />
+        <Image width={256} height={256} alt="Paper Plane Vector" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Paper_Plane_Vector.svg/250px-Paper_Plane_Vector.svg.png" />
       </a>
     </div>
   

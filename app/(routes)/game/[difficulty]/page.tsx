@@ -6,6 +6,11 @@ import { CasualCity, ExpertCity } from "@/app/_types/Types";
 import FetchImages from "../../../_components/fetch_images/FetchImages";
 import Card from "@/app/_components/Card";
 
+// Lets "Sao Paulo" match "São Paulo" and "Washington DC" match "Washington, D.C."
+const normalizeCityName = (name: string): string =>
+    name.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase()
+        .replace(/[^a-z0-9 ]/g, "").replace(/\s+/g, " ").trim();
+
 // Since Next.js 15, route params arrive as a Promise; use() unwraps it in a client component
 export default function Home({params}: {params: Promise<{difficulty: "casual" | "expert"}>}){
 
@@ -95,7 +100,7 @@ export default function Home({params}: {params: Promise<{difficulty: "casual" | 
             if(event.target["0"] instanceof HTMLInputElement){
                 const answer = event.target["0"].value;
                 event.target["0"].value = "";
-                if(answer.trim().toLowerCase() == data.city.name.toLowerCase()){
+                if(normalizeCityName(answer) == normalizeCityName(data.city.name)){
                     setScoreExpert((prevScore)=>{
                         window.localStorage.setItem("scoreExpert", `${scoreExpert+1}`);
                         return (prevScore+1)});
@@ -151,6 +156,10 @@ export default function Home({params}: {params: Promise<{difficulty: "casual" | 
             </div>
             <div className="flex flex-col">
                 <Card display_text={displayText} url_destination={data.city.href} zIndex="50" game = {true}></Card>
+                {/* Wikimedia Commons photos need credit to their author and license */}
+                <a className="text-sm text-gray-800 mt-2 hover:underline" href={data.city.credit.source} target="_blank" rel="noopener noreferrer">
+                    Photo: {data.city.credit.artist}, {data.city.credit.license}
+                </a>
                 {data.casual?
                 <div className="grid grid-cols-5 md:grid-rows-1 grid-rows-3 text-center md:text-4xl text-2xl mt-6 lg:gap-8 gap-4">
                     <button onClick={handleClick} className="font-semibold lg:row-start-1 row-start-2 lg:col-start-2 col-start-3 lg:justify-self-end justify-self-center
